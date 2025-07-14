@@ -1,8 +1,17 @@
 import styles from'./todoItem.module.css'
 
-export default function TodoItem({item,index}){
+export default function TodoItem({item,todos,setTodos}){
+    function handleDelete(item){
+        console.log("deleteButton Clicked",item)
+        setTodos(todos.filter((todo)=> todo !== item))
+    }
     return <div className={styles.item}>
-        <div key={index} className={styles.itemName}>{item}</div>
+        <div className={styles.itemName}>
+            {item}
+            <span>
+                <button onClick={()=>handleDelete(item)} className={styles.deleteButton}>X</button>
+            </span>
+        </div>
         <hr className= {styles.line} />
     </div>
 }
